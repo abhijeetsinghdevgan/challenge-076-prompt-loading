@@ -1,6 +1,8 @@
 # 🌀 LOAD_STATION // Interactive Loading Experience
 ### 🎨 Challenge #076 // Design & Front-End Engineering Showcase
 
+🔗 **Live Demo / Preview:** [https://abhijeetsinghdevgan.github.io/challenge-076-prompt-loading/](https://abhijeetsinghdevgan.github.io/challenge-076-prompt-loading/)
+
 Welcome to **LOAD_STATION**, a premium multi-sensory interactive dashboard that explores the art of front-end loaders. Typically treated as an afterthought, loading screens are the first touchpoint of user experience. This project elevates the humble "loader" into a captivating visual showcase across four immersive digital paradigms: futuristic video games, high-end cinema buffering, data-intensive SaaS dashboards, and abstract physics sandboxes.
 
 *Designed with ultra-premium aesthetics, glassmorphism, responsive visual grids, 60 FPS HTML5 canvas renders, and Web Audio API synthesized soundscapes.*
