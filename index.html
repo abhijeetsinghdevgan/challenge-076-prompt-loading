@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOAD_STATION // Interactive Loading Experience</title>
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Cyberpunk holographic scanline and grid background overlay -->
+    <div class="grid-overlay"></div>
+    <div class="scanlines"></div>
+
+    <div class="app-container">
+        <!-- TOP NAVIGATION BAR -->
+        <header class="app-header">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 100 100" class="logo-svg">
+                        <circle cx="50" cy="50" r="40" stroke="url(#logo-grad)" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="180 70"/>
+                        <circle cx="50" cy="50" r="25" stroke="var(--cyan)" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="80 80" class="logo-inner"/>
+                        <defs>
+                            <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="var(--pink)" />
+                                <stop offset="100%" stop-color="var(--cyan)" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <h1>LOAD_STATION</h1>
+                    <span class="sub-logo">CHALLENGE #076 // INTERACTIVE LOADER HUB</span>
+                </div>
+            </div>
+
+            <!-- Global Audio Synth Controls -->
+            <div class="global-controls">
+                <button id="synth-audio-toggle" class="btn-control toggle-audio" aria-label="Toggle Synthesized Audio">
+                    <svg viewBox="0 0 24 24" class="icon icon-muted">
+                        <path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zm-9 5.77H1v6h4l5 5V4L5 9z"/>
+                    </svg>
+                    <svg viewBox="0 0 24 24" class="icon icon-playing hidden">
+                        <path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                    </svg>
+                    <span>SYNTH AUDIO: OFF</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN CONTAINER -->
+        <main class="app-main">
+            <!-- SIDEBAR SELECTION PANEL -->
+            <aside class="app-sidebar">
+                <div class="sidebar-title">PARADIGMS</div>
+                <nav class="sidebar-nav">
+                    <button class="nav-item active" data-target="game-mode">
+                        <div class="nav-icon purple-glow">
+                            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                        </div>
+                        <div class="nav-label">
+                            <span class="nav-title">Neo-Genesis</span>
+                            <span class="nav-desc">Cyberpunk Game Screen</span>
+                        </div>
+                    </button>
+
+                    <button class="nav-item" data-target="movie-mode">
+                        <div class="nav-icon cyan-glow">
+                            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M18 3v2h-2V3H8v2H6V3H4v18h2v-2h2v2h8v-2h2v2h2V3h-2zM8 17H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V7h2v2zm10 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/></svg>
+                        </div>
+                        <div class="nav-label">
+                            <span class="nav-title">Cine-Flow</span>
+                            <span class="nav-desc">Movie Buffer Simulator</span>
+                        </div>
+                    </button>
+
+                    <button class="nav-item" data-target="dashboard-mode">
+                        <div class="nav-icon green-glow">
+                            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        </div>
+                        <div class="nav-label">
+                            <span class="nav-title">Corp-Grid</span>
+                            <span class="nav-desc">SaaS Skeleton Loader</span>
+                        </div>
+                    </button>
+
+                    <button class="nav-item" data-target="sandbox-mode">
+                        <div class="nav-icon gold-glow">
+                            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                        </div>
+                        <div class="nav-label">
+                            <span class="nav-title">Morph-Lab</span>
+                            <span class="nav-desc">Interactive Sandbox</span>
+                        </div>
+                    </button>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="info-tag">CORE // JS SYNTHESIS</div>
+                    <div class="fps-counter">SIMULATOR ACTIVE <span class="dot pulse-green"></span></div>
+                </div>
+            </aside>
+
+            <!-- MAIN CANVAS / SIMULATOR DISPLAY PANELS -->
+            <section class="app-display">
+
+                <!-- 1. CYBERPUNK GAME LOADING SCREEN (NEO-GENESIS) -->
+                <div class="scenario-panel active" id="game-mode">
+                    <div class="game-loader-wrapper">
+                        <!-- Immersive holographic background -->
+                        <div class="game-backdrop-container">
+                            <img id="game-bg" src="assets/images/cyberpunk_game_concept.png" alt="Neo-Genesis Concept Art" class="game-bg-img">
+                            <div class="hologram-grid"></div>
+                            <div class="glitch-chromatic"></div>
+                        </div>
+
+                        <!-- Header HUD elements -->
+                        <div class="game-hud-top">
+                            <div class="hud-left">
+                                <span class="hud-label">SYSTEM_STATUS: <span class="hud-value loading-text-anim">BOOTING_CORE_SYS</span></span>
+                            </div>
+                            <div class="hud-right">
+                                <span class="hud-label">SECTOR: <span class="hud-value">NEO-SHIBUYA 09</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Center Glitch Logo -->
+                        <div class="game-center-title">
+                            <div class="glitch-title" data-text="NEO // GENESIS">NEO // GENESIS</div>
+                            <div class="subtitle-sub">HYPERTHREAD SIMULATION INITIALIZATION</div>
+                        </div>
+
+                        <!-- Bottom HUD Dashboard -->
+                        <div class="game-hud-bottom">
+                            <!-- Left: Interactive scrolling terminal log -->
+                            <div class="game-terminal-container">
+                                <div class="terminal-header">
+                                    <div class="terminal-dot"></div>
+                                    <span>DIAGNOSTIC CORE CONSOLE</span>
+                                </div>
+                                <div class="terminal-logs" id="game-logs">
+                                    <!-- Dynamic console logs will output here -->
+                                </div>
+                            </div>
+
+                            <!-- Right: Loading progress & controls -->
+                            <div class="game-progress-area">
+                                <div class="progress-details">
+                                    <div class="progress-label">SYNCHRONIZING NEURAL LINK...</div>
+                                    <div class="progress-percent" id="game-percentage">0%</div>
+                                </div>
+                                <div class="game-progress-bar-container">
+                                    <div class="game-progress-bar" id="game-bar"></div>
+                                    <div class="game-progress-bar-glow" id="game-bar-glow"></div>
+                                </div>
+                                <div class="hud-sub-data">
+                                    <span>MEM_ALLOC: 41.2 GB // FREQ: 9.84 GHz</span>
+                                    <button class="btn-cyan btn-restart" id="restart-game-loader">
+                                        <svg viewBox="0 0 24 24" class="icon"><path fill="currentColor" d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+                                        REBOOT SEQUENCE
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gameplay tips panel -->
+                        <div class="game-tips-card" id="game-tip-card">
+                            <span class="tip-header">SYSTEM ARCHITECTURE HINT</span>
+                            <p class="tip-content" id="game-tip-text">Initializing components...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. MOVIE BUFFER SIMULATOR (CINE-FLOW) -->
+                <div class="scenario-panel" id="movie-mode">
+                    <div class="movie-player-container">
+                        <!-- Immersive Movie backdrop with realistic cinema screen ratio -->
+                        <div class="movie-viewport">
+                            <img id="movie-bg" src="assets/images/movie_buffering_poster.png" alt="Cosmic Nebula Movie Poster" class="movie-backdrop-img blurred">
+                            
+                            <!-- Glowing Buffer Vortex overlay -->
+                            <div class="buffer-overlay" id="movie-buffer-overlay">
+                                <div class="vortex-container">
+                                    <div class="vortex-ring ring-1"></div>
+                                    <div class="vortex-ring ring-2"></div>
+                                    <div class="vortex-ring ring-3"></div>
+                                    <div class="vortex-particles"></div>
+                                </div>
+                                <div class="buffer-text">
+                                    <span class="buffer-speed" id="movie-buffer-rate">BUFFERING... 0%</span>
+                                    <span class="buffer-eta" id="movie-buffer-eta">SPEED: 1.2 MB/s (EST. 8s)</span>
+                                </div>
+                            </div>
+
+                            <!-- Interactive Movie Player UI Controls (glowing glassmorphism) -->
+                            <div class="player-controls">
+                                <div class="player-timeline">
+                                    <div class="timeline-loaded" id="movie-timeline-buffered"></div>
+                                    <div class="timeline-progress" id="movie-timeline-progress"></div>
+                                    <div class="timeline-handle" id="movie-timeline-handle"></div>
+                                </div>
+                                <div class="player-buttons">
+                                    <div class="controls-left">
+                                        <button class="btn-player" id="movie-play-btn" aria-label="Play/Pause">
+                                            <svg viewBox="0 0 24 24" class="icon" id="play-icon"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+                                            <svg viewBox="0 0 24 24" class="icon hidden" id="pause-icon"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+                                        <button class="btn-player" id="movie-reload-btn" aria-label="Restart Video">
+                                            <svg viewBox="0 0 24 24" class="icon"><path fill="currentColor" d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                                        </button>
+                                        <span class="video-timer" id="movie-time-display">0:00 / 2:30</span>
+                                    </div>
+                                    <div class="controls-right">
+                                        <div class="control-menu-wrapper">
+                                            <span class="control-label">QUALITY</span>
+                                            <select class="player-select" id="movie-quality">
+                                                <option value="4k">4K Ultra HD</option>
+                                                <option value="1080p" selected>1080p Full HD</option>
+                                                <option value="720p">720p HD</option>
+                                                <option value="360p">360p Standard</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Big overlay Play Button at launch -->
+                            <div class="big-play-trigger" id="movie-big-play">
+                                <div class="play-pulse-circle"></div>
+                                <svg viewBox="0 0 24 24" class="icon-big-play"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar controls for Movie Simulator -->
+                        <div class="movie-config-panel">
+                            <div class="panel-section-title">NETWORK SIMULATION CONTROLS</div>
+                            <p class="panel-section-desc">Change the network speed to dynamically alter how the buffering simulation behaves.</p>
+                            
+                            <div class="network-presets">
+                                <button class="btn-preset active" data-speed="fiber">
+                                    <span class="preset-title">FIBER OPTIC</span>
+                                    <span class="preset-speed">100+ MB/s (Instant)</span>
+                                </button>
+                                <button class="btn-preset" data-speed="fiveg">
+                                    <span class="preset-title">5G MOBILE</span>
+                                    <span class="preset-speed">15 MB/s (High Speed)</span>
+                                </button>
+                                <button class="btn-preset" data-speed="fourg">
+                                    <span class="preset-title">4G MOBILE</span>
+                                    <span class="preset-speed">4.5 MB/s (Intermittent)</span>
+                                </button>
+                                <button class="btn-preset" data-speed="threeg">
+                                    <span class="preset-title">3G BROADBAND</span>
+                                    <span class="preset-speed">850 KB/s (Heavy Buffer)</span>
+                                </button>
+                            </div>
+
+                            <div class="network-statistics">
+                                <div class="stat-row">
+                                    <span>BUFFERING FREQUENCY:</span>
+                                    <span id="stat-buffering-freq" class="stat-highlight">Low</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>NETWORK JITTER:</span>
+                                    <span id="stat-jitter" class="stat-highlight">12ms</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>DROPPED FRAMES:</span>
+                                    <span id="stat-dropped-frames" class="stat-highlight">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. ENTERPRISE SAAS DASHBOARD SKELETON (CORP-GRID) -->
+                <div class="scenario-panel" id="dashboard-mode">
+                    <div class="dashboard-simulator-container">
+                        <!-- Dashboard control bar -->
+                        <div class="dashboard-controls">
+                            <div class="db-title-area">
+                                <h3>Enterprise SaaS Control Portal</h3>
+                                <span class="db-subtitle">Visualizing skeleton-to-content transition</span>
+                            </div>
+                            <div class="db-actions">
+                                <button class="btn-green" id="trigger-skeleton-reload">
+                                    <svg viewBox="0 0 24 24" class="icon"><path fill="currentColor" d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm-1.1 13.9c-.8-.25-1.55-.68-2.18-1.28l1.43-1.43c.42.33.91.58 1.45.69l.3 2.02zM12 18c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v-3.1z"/></svg>
+                                    FORCE RE-FETCH (2s Network Latency)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Grid Canvas Area -->
+                        <div class="dashboard-grid-content">
+                            <!-- Skeleton Layer (visible while loading) -->
+                            <div class="skeleton-layout" id="dashboard-skeleton">
+                                <!-- Cards Row -->
+                                <div class="skeleton-cards-grid">
+                                    <div class="sk-card shimmer">
+                                        <div class="sk-circle shimmer"></div>
+                                        <div class="sk-lines">
+                                            <div class="sk-line title shimmer"></div>
+                                            <div class="sk-line text shimmer"></div>
+                                        </div>
+                                    </div>
+                                    <div class="sk-card shimmer">
+                                        <div class="sk-circle shimmer"></div>
+                                        <div class="sk-lines">
+                                            <div class="sk-line title shimmer"></div>
+                                            <div class="sk-line text shimmer"></div>
+                                        </div>
+                                    </div>
+                                    <div class="sk-card shimmer">
+                                        <div class="sk-circle shimmer"></div>
+                                        <div class="sk-lines">
+                                            <div class="sk-line title shimmer"></div>
+                                            <div class="sk-line text shimmer"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Massive Visual Chart Space -->
+                                <div class="sk-chart-container shimmer">
+                                    <div class="sk-chart-header">
+                                        <div class="sk-line title w-20 shimmer"></div>
+                                        <div class="sk-line text w-10 shimmer"></div>
+                                    </div>
+                                    <div class="sk-chart-body">
+                                        <div class="sk-chart-bar h-60 shimmer"></div>
+                                        <div class="sk-chart-bar h-80 shimmer"></div>
+                                        <div class="sk-chart-bar h-40 shimmer"></div>
+                                        <div class="sk-chart-bar h-90 shimmer"></div>
+                                        <div class="sk-chart-bar h-70 shimmer"></div>
+                                        <div class="sk-chart-bar h-50 shimmer"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Lower Table View -->
+                                <div class="sk-table-container shimmer">
+                                    <div class="sk-table-row header">
+                                        <div class="sk-cell shimmer"></div>
+                                        <div class="sk-cell shimmer"></div>
+                                        <div class="sk-cell shimmer"></div>
+                                    </div>
+                                    <div class="sk-table-row">
+                                        <div class="sk-cell w-30 shimmer"></div>
+                                        <div class="sk-cell w-20 shimmer"></div>
+                                        <div class="sk-cell w-40 shimmer"></div>
+                                    </div>
+                                    <div class="sk-table-row">
+                                        <div class="sk-cell w-40 shimmer"></div>
+                                        <div class="sk-cell w-30 shimmer"></div>
+                                        <div class="sk-cell w-20 shimmer"></div>
+                                    </div>
+                                    <div class="sk-table-row">
+                                        <div class="sk-cell w-20 shimmer"></div>
+                                        <div class="sk-cell w-40 shimmer"></div>
+                                        <div class="sk-cell w-30 shimmer"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Actual Content Layer (visible once loaded) -->
+                            <div class="actual-layout hidden" id="dashboard-actual">
+                                <!-- Cards Row -->
+                                <div class="cards-grid">
+                                    <div class="db-stat-card card-glow-green">
+                                        <div class="card-icon-wrapper sales">
+                                            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+                                        </div>
+                                        <div class="card-info">
+                                            <span class="card-label">TOTAL CONVERSIONS</span>
+                                            <span class="card-value" id="val-conversions">24,892</span>
+                                            <span class="card-change up">+12.4% vs last week</span>
+                                        </div>
+                                    </div>
+                                    <div class="db-stat-card card-glow-purple">
+                                        <div class="card-icon-wrapper revenue">
+                                            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+                                        </div>
+                                        <div class="card-info">
+                                            <span class="card-label">MONTHLY REVENUE</span>
+                                            <span class="card-value" id="val-revenue">$142,390</span>
+                                            <span class="card-change up">+8.2% vs last month</span>
+                                        </div>
+                                    </div>
+                                    <div class="db-stat-card card-glow-cyan">
+                                        <div class="card-icon-wrapper active-users">
+                                            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                                        </div>
+                                        <div class="card-info">
+                                            <span class="card-label">ACTIVE PLATFORM SESSIONS</span>
+                                            <span class="card-value" id="val-sessions">8,419</span>
+                                            <span class="card-change neutral">Stable (±0.4%)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Massive Visual Chart Space -->
+                                <div class="chart-container-actual">
+                                    <div class="chart-header">
+                                        <div class="chart-meta">
+                                            <h4>DASHBOARD ANALYTICS OVERVIEW</h4>
+                                            <span class="chart-desc">Real-time system load and execution efficiency monitoring</span>
+                                        </div>
+                                        <div class="chart-legend">
+                                            <span class="legend-item"><span class="legend-dot cyan"></span>SYSTEM LOAD</span>
+                                            <span class="legend-item"><span class="legend-dot pink"></span>DATABASE I/O</span>
+                                        </div>
+                                    </div>
+                                    <div class="chart-visualizer">
+                                        <!-- Custom Canvas for premium interactive charts -->
+                                        <canvas id="dashboard-canvas-chart"></canvas>
+                                    </div>
+                                </div>
+
+                                <!-- Lower Table View -->
+                                <div class="table-container-actual">
+                                    <table class="db-table">
+                                        <thead>
+                                            <tr>
+                                                <th>MICROSERVICE</th>
+                                                <th>STATUS</th>
+                                                <th>RESPONSE LATENCY</th>
+                                                <th>CPU LOAD</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="service-name">Auth-Gateway-Service</td>
+                                                <td><span class="badge badge-success">OPERATIONAL</span></td>
+                                                <td>12ms</td>
+                                                <td>
+                                                    <div class="cpu-prog-bar"><div class="fill" style="width: 24%"></div></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="service-name">Media-Stream-V2</td>
+                                                <td><span class="badge badge-success">OPERATIONAL</span></td>
+                                                <td>42ms</td>
+                                                <td>
+                                                    <div class="cpu-prog-bar"><div class="fill" style="width: 68%"></div></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="service-name">Dynamo-Sync-Worker</td>
+                                                <td><span class="badge badge-warning">HEAVY LOAD</span></td>
+                                                <td>284ms</td>
+                                                <td>
+                                                    <div class="cpu-prog-bar"><div class="fill warning" style="width: 91%"></div></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="service-name">Static-Asset-CDN</td>
+                                                <td><span class="badge badge-success">OPERATIONAL</span></td>
+                                                <td>4ms</td>
+                                                <td>
+                                                    <div class="cpu-prog-bar"><div class="fill" style="width: 8%"></div></div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. ABSTRACT INTERACTIVE LOADING SANDBOX (MORPH-LAB) -->
+                <div class="scenario-panel" id="sandbox-mode">
+                    <div class="sandbox-wrapper">
+                        <!-- Left: Canvas visualizer -->
+                        <div class="canvas-viewport-container">
+                            <canvas id="sandbox-canvas"></canvas>
+                            <div class="sandbox-stats-floating">
+                                <span class="sb-stat">PARTICLES: <span id="sb-stat-count">200</span></span>
+                                <span class="sb-stat">PRESET: <span id="sb-stat-preset">CIRCULAR</span></span>
+                                <span class="sb-stat">AUDIO FREQ: <span id="sb-stat-audio">0 Hz</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Right: Settings configurations -->
+                        <div class="sandbox-settings-panel">
+                            <div class="panel-section-title">MORPH-LAB PARAMETERS</div>
+                            <p class="panel-section-desc">Create your own procedural loading animation by tweaking real-time parameters below.</p>
+
+                            <!-- Parameters controllers -->
+                            <div class="control-group">
+                                <div class="slider-header">
+                                    <label for="sb-speed">SIMULATION SPEED</label>
+                                    <span class="slider-val" id="sb-val-speed">1.0x</span>
+                                </div>
+                                <input type="range" id="sb-speed" min="0.1" max="3" step="0.1" value="1.0" class="sb-slider">
+                            </div>
+
+                            <div class="control-group">
+                                <div class="slider-header">
+                                    <label for="sb-particles">PARTICLE COUNT</label>
+                                    <span class="slider-val" id="sb-val-particles">200</span>
+                                </div>
+                                <input type="range" id="sb-particles" min="20" max="800" step="10" value="200" class="sb-slider">
+                            </div>
+
+                            <div class="control-group">
+                                <div class="slider-header">
+                                    <label for="sb-glow">NEON GLOW RADIUS</label>
+                                    <span class="slider-val" id="sb-val-glow">15px</span>
+                                </div>
+                                <input type="range" id="sb-glow" min="0" max="40" step="1" value="15" class="sb-slider">
+                            </div>
+
+                            <div class="control-group">
+                                <div class="slider-header">
+                                    <label for="sb-dimension">FORM MATRIX</label>
+                                    <span class="slider-val" id="sb-val-dimension">Circular Grid</span>
+                                </div>
+                                <div class="grid-buttons">
+                                    <button class="btn-grid-option active" data-style="circular">CIRCULAR</button>
+                                    <button class="btn-grid-option" data-style="helix">DOUBLE HELIX</button>
+                                    <button class="btn-grid-option" data-style="attractor">ATTRACTOR</button>
+                                    <button class="btn-grid-option" data-style="vortex">SPATIAL VORTEX</button>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label>THEME PALETTE</label>
+                                <div class="color-palette-selector">
+                                    <button class="btn-palette active" data-palette="cyber" style="background: linear-gradient(135deg, #00f0ff, #f000ff);" title="Cyber Glitch"></button>
+                                    <button class="btn-palette" data-palette="toxic" style="background: linear-gradient(135deg, #39ff14, #00ffcc);" title="Toxic Radioactive"></button>
+                                    <button class="btn-palette" data-palette="cosmic" style="background: linear-gradient(135deg, #ff007f, #7f00ff);" title="Cosmic Horizon"></button>
+                                    <button class="btn-palette" data-palette="amber" style="background: linear-gradient(135deg, #ffb700, #ff5500);" title="Molten Amber"></button>
+                                </div>
+                            </div>
+
+                            <div class="sandbox-actions">
+                                <button class="btn-cyan w-full" id="sb-explode">TRIGGER ENTROPY BURST</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
